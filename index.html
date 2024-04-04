@@ -25,25 +25,22 @@
       color: hsl(228, 45%, 44%);
     }
   </style>
+  <script src="/script.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-
             'rubik': ['Rubik', 'sans-serif'],
-          },
-          right: {
-            '160px': '160px'
           },
           colors: {
             background: 'hsl(226, 43%, 10%)',
             blue: 'hsl(235, 46%, 20%)',
+            gray: 'hsl(0, 0%, 65%)',
             profile: 'hsl(235, 45%, 61%)',
             work: 'hsl(15, 100%, 70%)',
             play: 'hsl(195, 74%, 62%)',
-            gray: 'hsl(0, 0%, 65%)',
             study: 'hsl(348, 100%, 68%)',
             exercise: 'hsl(145, 58%, 55%)',
             social: 'hsl(264, 64%, 52%)',
@@ -74,15 +71,15 @@
       </div>
       <div
         class=" h-[4rem] flex justify-around items-center font-sm text-gray text-lg p-3 lg:h-[10rem] lg:flex-col lg:items-start ">
-        <p class="hover:text-white">
+        <button class="hover:text-white" onclick="getDaily()">
           Daily
-        </p>
-        <p class="hover:text-white">
+        </button>
+        <button class="hover:text-white" onclick="getWeekly()">
           Weekly
-        </p>
-        <p class="hover:text-white">
+        </button>
+        <button class="hover:text-white" onclick="getMonthly()">
           Monthly
-        </p>
+        </button>
       </div>
     </div>
     <div class="w-11/12 flex flex-col justify-between gap-5 lg:flex-row lg:flex-wrap lg:h-full lg:gap-8">
@@ -108,10 +105,10 @@
             </svg>
           </div>
           <div class="flex justify-between items-center mb-4 lg:flex-col lg:items-start gap-2">
-            <p class="text-4xl text-white">
+            <p id="workCurrent" class="text-4xl text-white">
               32hrs
             </p>
-            <p class="text-gray text-xl">
+            <p id="workPrevious" class="text-gray text-xl">
               Last week - 36hrs
             </p>
           </div>
@@ -138,11 +135,12 @@
                 fill="#BBC0FF" fill-rule="evenodd" />
             </svg>
           </div>
+
           <div class="flex justify-between items-center mb-4 lg:flex-col lg:items-start gap-2">
-            <p class="text-4xl text-white">
+            <p id="playCurrent" class="text-4xl text-white">
               10hrs
             </p>
-            <p class="text-gray text-xl">
+            <p id="playPrevious" class="text-gray text-xl">
               Last week - 8hrs
             </p>
           </div>
@@ -170,10 +168,10 @@
             </svg>
           </div>
           <div class="flex justify-between items-center mb-4 lg:flex-col lg:items-start gap-2">
-            <p class="text-4xl text-white">
+            <p id="studyCurrent" class="text-4xl text-white">
               4hrs
             </p>
-            <p class="text-gray text-xl">
+            <p id="studyPrevious" class="text-gray text-xl">
               Last week - 7hrs
             </p>
           </div>
@@ -201,10 +199,10 @@
             </svg>
           </div>
           <div class="flex justify-between items-center  mb-4 lg:flex-col lg:items-start gap-2">
-            <p class="text-4xl text-white">
+            <p id="exerciseCurrent" class="text-4xl text-white">
               4hrs
             </p>
-            <p class="text-gray text-xl">
+            <p id="exercicePrevious" class="text-gray text-xl">
               Last week - 5hrs
             </p>
           </div>
@@ -233,10 +231,10 @@
             </svg>
           </div>
           <div class="flex justify-between items-center mb-4 lg:flex-col lg:items-start gap-2">
-            <p class="text-4xl text-white">
+            <p id="socialCurrent" class="text-4xl text-white">
               4hrs
             </p>
-            <p class="text-gray text-xl">
+            <p id="socialPrevious" class="text-gray text-xl">
               Last week - 5hrs
             </p>
           </div>
@@ -264,10 +262,10 @@
             </svg>
           </div>
           <div class="flex justify-between items-center mb-4 lg:flex-col lg:items-start gap-2">
-            <p class="text-4xl text-white">
+            <p id="selfCurrent" class="text-4xl text-white">
               4hrs
             </p>
-            <p class="text-gray text-xl">
+            <p id="selfPrevious" class="text-gray text-xl">
               Last week - 5hrs
             </p>
           </div>
