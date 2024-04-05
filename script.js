@@ -1,196 +1,147 @@
-// Your code here
-var jsonData;
-fetch("data.json")
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-    return response.json(); // Step 2: Parse JSON
-  })
-  .then((data) => {
-    jsonData = data;
-    processData(data);
-  })
-  .catch((error) => {
-    console.error("There was a problem fetching or parsing the data:", error);
-  });
-var dailyData;
-var weeklyData;
-var monthlyData;
+document.addEventListener("DOMContentLoaded", function () {
+  var dailyData;
+  var weeklyData;
+  var monthlyData;
 
-function processData(jsonData) {
-  dailyData = jsonData.map((item) => [
-    {
+  let workCurrent = document.getElementById("workCurrent");
+  let workPrevious = document.getElementById("workPrevious");
+  /*----------*/
+  let playCurrent = document.getElementById("playCurrent");
+  let playPrevious = document.getElementById("playPrevious");
+  /* --------- */
+  let studyCurrent = document.getElementById("studyCurrent");
+  let studyPrevious = document.getElementById("studyPrevious");
+  /* -------- */
+  let exerciceCurrent = document.getElementById("exerciseCurrent");
+  let exercicePrevious = document.getElementById("exercicePrevious");
+  /* -------- */
+  let socialCurrent = document.getElementById("socialCurrent");
+  let socialPrevious = document.getElementById("socialPrevious");
+  /* -------- */
+  let selfCurrent = document.getElementById("selfCurrent");
+  let selfPrevious = document.getElementById("selfPrevious");
+
+  // Fetch data and process it
+  fetch("data.json")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json(); // Parse JSON
+    })
+    .then((data) => {
+      processData(data); // Process the fetched data
+    })
+    .catch((error) => {
+      console.error("There was a problem fetching or parsing the data:", error);
+    });
+
+  function processData(jsonData) {
+    // Process the fetched JSON data
+    dailyData = jsonData.map((item) => ({
       title: item.title,
       times: {
         current: item.timeframes.daily.current,
         previous: item.timeframes.daily.previous,
       },
-    },
-  ]);
-  weeklyData = jsonData.map((item) => [
-    {
+    }));
+
+    weeklyData = jsonData.map((item) => ({
       title: item.title,
       times: {
         current: item.timeframes.weekly.current,
         previous: item.timeframes.weekly.previous,
       },
-    },
-  ]);
-  monthlyData = jsonData.map((item) => [
-    {
+    }));
+
+    monthlyData = jsonData.map((item) => ({
       title: item.title,
       times: {
         current: item.timeframes.monthly.current,
         previous: item.timeframes.monthly.previous,
       },
-    },
-  ]);
+    }));
+  }
 
-  console.log("Daily data", dailyData);
-  console.log("weekly data", weeklyData);
-  console.log("monthly data", monthlyData);
-}
+  function getDaily(dailyData) {
+    // Define an array of IDs for the current and previous elements
+   const ids = ["work", "play", "study", "exercise", "social", "self"];
+   // Loop through the monthlyData array
+    dailyData.forEach((item, index) => {
+      // Get the current and previous times for the current item
+      const { current, previous } = item.times;
+      console.log(ids[index], item, index);
 
-processData(jsonData);
+      // Construct the IDs for the current and previous elements
+      const currentId = `${ids[index]}Current`;
+      const previousId = `${ids[index]}Previous`;
 
-function getDaily(daily) {
-  console.log("daily", daily);
+      // Update the inner HTML for the current and previous elements
+      document.getElementById(currentId).innerHTML = `${current}hrs`;
+      document.getElementById(
+        previousId
+      ).innerHTML = `Last month - ${previous}hrs`;
+    });
+  }
 
-  let workCurrent = document.getElementById("workCurrent");
-  let workPrevious = document.getElementById("workPrevious");
-  /*----------*/
-  let playCurrent = document.getElementById("playCurrent");
-  let playPrevious = document.getElementById("playPrevious");
-  /* --------- */
-  let studyCurrent = document.getElementById("studyCurrent");
-  let studyPrevious = document.getElementById("studyPrevious");
-  /* -------- */
-  let exerciceCurrent = document.getElementById("exerciseCurrent");
-  let exercicePrevious = document.getElementById("exercicePrevious");
-  /* -------- */
-  let socialCurrent = document.getElementById("socialCurrent");
-  let socialPrevious = document.getElementById("socialPrevious");
-  /* -------- */
-  let selfCurrent = document.getElementById("selfCurrent");
-  let selfPrevious = document.getElementById("selfPrevious");
+  function getWeekly(weeklyData) {
+    // Define an array of IDs for the current and previous elements
+    const ids = ["work", "play", "study", "exercise", "social", "self"];
 
-  /* ----------------------------- */
+    // Loop through the monthlyData array
+    weeklyData.forEach((item, index) => {
+      // Get the current and previous times for the current item
+      const { current, previous } = item.times;
+      console.log(ids[index]);
 
-  workCurrent.innerHTML = `${daily}hrs`;
-  workPrevious.innerHTML = `Yesterday - ${10}hrs`;
-  /* --------- */
+      // Construct the IDs for the current and previous elements
+      const currentId = `${ids[index]}Current`;
+      const previousId = `${ids[index]}Previous`;
 
-  playCurrent.innerHTML = `${10}hrs`;
-  playPrevious.innerHTML = `Yesterday - ${8}hrs`;
-  /* --------- */
+      // Update the inner HTML for the current and previous elements
+      document.getElementById(currentId).innerHTML = `${current}hrs`;
+      document.getElementById(
+        previousId
+      ).innerHTML = `Last month - ${previous}hrs`;
+    });
+  }
 
-  studyCurrent.innerHTML = `${4}hrs`;
-  studyPrevious.innerHTML = `Yesterday - ${36}hrs`;
-  /* --------- */
+  function getMonthly(monthlyData) {
+    // Define an array of IDs for the current and previous elements
+    const ids = ["work", "play", "study", "exercise", "social", "self"];
 
-  exerciceCurrent.innerHTML = `${4}hrs`;
-  exercicePrevious.innerHTML = `Yesterday - ${36}hrs`;
-  /* --------- */
+    // Loop through the monthlyData array
+    monthlyData.forEach((item, index) => {
+      // Get the current and previous times for the current item
+      const { current, previous } = item.times;
+      console.log(ids[index]);
 
-  socialCurrent.innerHTML = `${4}hrs`;
-  socialPrevious.innerHTML = `Yesterday - ${36}hrs`;
-  /* --------- */
+      // Construct the IDs for the current and previous elements
+      const currentId = `${ids[index]}Current`;
+      const previousId = `${ids[index]}Previous`;
 
-  selfCurrent.innerHTML = `${4}hrs`;
-  selfPrevious.innerHTML = `Yesterday - ${5}hrs`;
-}
+      // Update the inner HTML for the current and previous elements
+      document.getElementById(currentId).innerHTML = `${current}hrs`;
+      document.getElementById(
+        previousId
+      ).innerHTML = `Last month - ${previous}hrs`;
+    });
+  }
 
-function getWeekly(weekly) {
-  console.log("weekly", weekly);
+  // Add event listeners to the buttons
+  document.getElementById("dailyButton").addEventListener("click", function () {
+    getDaily(dailyData);
+  });
 
-  let workCurrent = document.getElementById("workCurrent");
-  let workPrevious = document.getElementById("workPrevious");
-  /*----------*/
-  let playCurrent = document.getElementById("playCurrent");
-  let playPrevious = document.getElementById("playPrevious");
-  /* --------- */
-  let studyCurrent = document.getElementById("studyCurrent");
-  let studyPrevious = document.getElementById("studyPrevious");
-  /* -------- */
-  let exerciceCurrent = document.getElementById("exerciseCurrent");
-  let exercicePrevious = document.getElementById("exercicePrevious");
-  /* -------- */
-  let socialCurrent = document.getElementById("socialCurrent");
-  let socialPrevious = document.getElementById("socialPrevious");
-  /* -------- */
-  let selfCurrent = document.getElementById("selfCurrent");
-  let selfPrevious = document.getElementById("selfPrevious");
+  document
+    .getElementById("weeklyButton")
+    .addEventListener("click", function () {
+      getWeekly(weeklyData);
+    });
 
-  /* ----------------------------- */
-
-  workCurrent.innerHTML = `${32}hrs`;
-  workPrevious.innerHTML = `Last week - ${36}hrs`;
-  /* --------- */
-
-  playCurrent.innerHTML = `${10}hrs`;
-  playPrevious.innerHTML = `Last week - ${8}hrs`;
-  /* --------- */
-
-  studyCurrent.innerHTML = `${4}hrs`;
-  studyPrevious.innerHTML = `Last week - ${36}hrs`;
-  /* --------- */
-
-  exerciceCurrent.innerHTML = `${4}hrs`;
-  exercicePrevious.innerHTML = `Last week - ${36}hrs`;
-  /* --------- */
-
-  socialCurrent.innerHTML = `${4}hrs`;
-  socialPrevious.innerHTML = `Last week - ${36}hrs`;
-  /* --------- */
-
-  selfCurrent.innerHTML = `${4}hrs`;
-  selfPrevious.innerHTML = `Last week - ${5}hrs`;
-}
-
-function getMonthly(monthlyData) {
-  console.log("Monthly", monthlyData);
-
-  let workCurrent = document.getElementById("workCurrent");
-  let workPrevious = document.getElementById("workPrevious");
-  /*----------*/
-  let playCurrent = document.getElementById("playCurrent");
-  let playPrevious = document.getElementById("playPrevious");
-  /* --------- */
-  let studyCurrent = document.getElementById("studyCurrent");
-  let studyPrevious = document.getElementById("studyPrevious");
-  /* -------- */
-  let exerciceCurrent = document.getElementById("exerciseCurrent");
-  let exercicePrevious = document.getElementById("exercicePrevious");
-  /* -------- */
-  let socialCurrent = document.getElementById("socialCurrent");
-  let socialPrevious = document.getElementById("socialPrevious");
-  /* -------- */
-  let selfCurrent = document.getElementById("selfCurrent");
-  let selfPrevious = document.getElementById("selfPrevious");
-
-  /* ----------------------------- */
-
-  workCurrent.innerHTML = `${32}hrs`;
-  workPrevious.innerHTML = `Last month - ${36}hrs`;
-  /* --------- */
-
-  playCurrent.innerHTML = `${10}hrs`;
-  playPrevious.innerHTML = `Last month - ${8}hrs`;
-  /* --------- */
-
-  studyCurrent.innerHTML = `${4}hrs`;
-  studyPrevious.innerHTML = `Last month - ${36}hrs`;
-  /* --------- */
-
-  exerciceCurrent.innerHTML = `${4}hrs`;
-  exercicePrevious.innerHTML = `Last month - ${36}hrs`;
-  /* --------- */
-
-  socialCurrent.innerHTML = `${4}hrs`;
-  socialPrevious.innerHTML = `Last month - ${36}hrs`;
-  /* --------- */
-
-  selfCurrent.innerHTML = `${4}hrs`;
-  selfPrevious.innerHTML = `Last month - ${5}hrs`;
-}
+  document
+    .getElementById("monthlyButton")
+    .addEventListener("click", function () {
+      getMonthly(monthlyData);
+    });
+});
