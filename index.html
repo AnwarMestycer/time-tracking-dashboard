@@ -52,10 +52,9 @@
   </script>
 </head>
 
-<body class="bg-background flex justify-between font-rubik">
-  <main class="w-full h-full flex flex-col justify-center items-center gap-5 p-1 m-1 lg:flex-row p-6">
-
-    <div id="profile" class="bg-blue rounded-lg w-11/12 lg:w-2/12">
+<body class="bg-background flex justify-center items-end font-rubik">
+  <main class="w-11/12 h-full flex flex-col justify-center items-center gap-5 lg:flex-row lg:justify-center">
+    <div id="profile" class="bg-blue rounded-lg w-11/12 lg:w-3/12">
       <div
         class="bg-profile flex lg:flex-col  justify-evenly items-center gap-4 h-[8rem] lg:h-[25rem] lg:items-start rounded-lg p-4 lg:p-8">
         <img src="/images/image-jeremy.png" class="rounded-full border-[3px] border-[white] w-[5rem] h-[5rem] "
@@ -70,7 +69,7 @@
         </div>
       </div>
       <div
-        class=" h-[4rem] flex justify-around items-center font-sm text-gray text-lg p-3 lg:h-[10rem] lg:flex-col lg:items-start ">
+        class="h-[4rem] flex justify-around items-center font-sm text-gray text-lg p-3 lg:h-[10rem] lg:flex-col lg:items-start ">
         <button class="hover:text-white" onclick="getDaily()">
           Daily
         </button>
@@ -82,9 +81,10 @@
         </button>
       </div>
     </div>
-    <div class="w-11/12 flex flex-col justify-between gap-5 lg:flex-row lg:flex-wrap lg:h-full lg:gap-8">
+    <div
+      class="w-11/12 flex flex-col justify-between gap-5 lg:grid lg:grid-cols-3 lg:grid-rows-2 lg:gap-x-0 lg:gap-y-[12rem]">
       <!--      Work          -->
-      <div class=" bg-work rounded-lg lg:w-3/12">
+      <div class="bg-work rounded-lg lg:w-10/12 lg:h-[5rem]">
         <div class="w-full h-[3.2rem] rounded-tl-lg rounded-tr-lg bg-lred flex justify-end">
           <svg width="79" height="79" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -115,7 +115,7 @@
         </div>
       </div>
       <!--     PLay           -->
-      <div class=" bg-play rounded-lg lg:w-3/12">
+      <div class=" bg-play rounded-lg lg:w-10/12 lg:h-[5rem]">
         <div class="w-full h-[3.2rem] rounded-tl-lg rounded-tr-lg bg-lred flex justify-end">
           <svg width="76" height="77" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -147,7 +147,7 @@
         </div>
       </div>
       <!--    Study           -->
-      <div class=" bg-study rounded-lg lg:w-3/12">
+      <div class=" bg-study rounded-lg lg:w-10/12 lg:h-[5rem]">
         <div class="w-full h-[3.2rem] rounded-tl-lg rounded-tr-lg bg-lred flex justify-end">
           <svg width="79" height="79" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -178,7 +178,7 @@
         </div>
       </div>
       <!--     Exercise   -->
-      <div class=" bg-exercise rounded-lg lg:w-3/12">
+      <div class=" bg-exercise rounded-lg lg:w-10/12 lg:h-[5rem]">
         <div class="w-full h-[3.2rem] rounded-tl-lg rounded-tr-lg bg-lred flex justify-end">
           <svg width="81" height="55" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -209,7 +209,7 @@
         </div>
       </div>
       <!--     social       -->
-      <div class=" bg-social rounded-lg lg:w-3/12">
+      <div class=" bg-social rounded-lg lg:w-10/12 lg:h-[5rem]">
         <div class="w-full h-[3.2rem] rounded-tl-lg rounded-tr-lg bg-lred flex justify-end">
           <svg width="75" height="100" xmlns="http://www.w3.org/2000/svg">
             <g fill="#5A1CBB" fill-rule="nonzero">
@@ -241,7 +241,7 @@
         </div>
       </div>
       <!--     Self care     -->
-      <div class=" bg-self rounded-lg lg:w-3/12">
+      <div class=" bg-self rounded-lg lg:w-10/12 lg:h-[5rem]">
         <div class="w-full h-[3.2rem] rounded-tl-lg rounded-tr-lg bg-lred flex justify-end">
           <svg width="67" height="67" xmlns="http://www.w3.org/2000/svg">
             <path
